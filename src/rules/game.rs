@@ -247,6 +247,16 @@ impl Game {
         self.turn = Color::White;
     }
 
+    /// Put an aritary stone on the goban.
+    pub fn put_stone(&mut self, point: Coord, c: Color) {
+        self.goban.put(point, c);
+    }
+
+    /// Put an aritary empty stone on the goban.
+    pub fn put_empty_stone(&mut self, point: Coord) {
+        self.goban.put_empty(point);
+    }
+
     /// Calculates score. with prisoners and komi.
     /// Dependant of the rule in the game.
     #[inline]
