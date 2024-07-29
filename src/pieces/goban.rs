@@ -143,6 +143,11 @@ impl Goban {
         &self.board
     }
 
+    pub(crate) fn put_empty(&mut self, point: Coord) {
+        let pushed_stone_idx = two_to_1dim(self.size, point);
+        self.board[pushed_stone_idx] = None;
+    }
+
     /// pushes the stone
     /// # Arguments
     /// point: the point where the stone will be placed

@@ -206,7 +206,7 @@ impl Game {
             }
         }
     }
-    
+
     /// Plays a move then return the simulated goban,
     /// used in legals for fast move simulation in Super Ko situations.
     pub fn play_for_verification(&self, (x, y): Coord) -> Goban {
@@ -255,6 +255,16 @@ impl Game {
             self.goban.push(coord, Color::Black);
         });
         self.turn = Color::White;
+    }
+
+    /// Put an aritary stone on the goban.
+    pub fn put_stone(&mut self, point: Coord, c: Color) {
+        self.goban.push(point, c);
+    }
+
+    /// Put an aritary empty stone on the goban.
+    pub fn put_empty_stone(&mut self, point: Coord) {
+        self.goban.put_empty(point);
     }
 
     /// Calculates score. with prisoners and komi.
@@ -426,9 +436,7 @@ impl Game {
         } else {
             let to_check = self.play_for_verification(stone.coord);
             let is_it_ko = self.check_ko(stone);
-                is_it_ko ||  self
-                    .history
-                    .contains(&to_check)
+            is_it_ko || self.history.contains(&to_check)
         }
     }
 
