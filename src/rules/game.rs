@@ -67,6 +67,16 @@ impl Game {
     }
 
     #[inline]
+    pub fn set_rule(&mut self, rule: Rule) {
+        self.rule = rule;
+    }
+
+    #[inline]
+    pub fn rule(&self) -> Rule {
+        self.rule
+    }
+
+    #[inline]
     pub fn set_komi(&mut self, komi: f32) {
         self.rule.komi = komi;
     }
